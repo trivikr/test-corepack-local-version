@@ -8,24 +8,34 @@ Tests behavior of corepack when local version of package manager is available
 
 ## Test
 
-Example run with fresh installation of Node.js 20.x using fnm:
+Example run with fresh installation of Node.js 20.x using [nvm][nvm]:
 
 ```console
-$ fnm ls
-* system
+$ nvm ls
+            N/A
+...
 
-$ fnm install 20
-Installing Node v20.18.1 (x64)
+$ nvm install 20
+...
+Now using node v20.18.1 (npm v10.8.2)
+Creating default alias: default -> 20 (-> v20.18.1)
 
-$ fnm use 20
-Using Node v20.18.1
+$ node -v
+v20.18.1
 
 $ yarn --version
--bash: /run/user/1000/fnm_multishells/32097_1735069336815/bin/yarn: No such file or directory
+-bash: yarn: command not found
+
+$ which yarn
+/usr/bin/which: no yarn in (/home/ec2-user/.nvm/versions/node/v20.18.1/bin:/run/user/1000/fnm_multishells/33476_1735070711467/bin:/home/ec2-user/.local/share/fnm:/home/ec2-user/.local/bin:/home/ec2-user/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 
 $ corepack enable
 
 $ yarn --version
-! Corepack is about to download https://repo.yarnpkg.com/4.2.2/packages/yarnpkg-cli/bin/yarn.js
-? Do you want to continue? [Y/n]
+4.2.2
+
+$ which yarn
+~/.nvm/versions/node/v20.18.1/bin/yarn
 ```
+
+[nvm]: https://github.com/nvm-sh/nvm
