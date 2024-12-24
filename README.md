@@ -36,6 +36,11 @@ $ yarn --version
 
 $ which yarn
 ~/.nvm/versions/node/v20.18.1/bin/yarn
+
+$ cat ~/.nvm/versions/node/v20.18.1/bin/yarn
+#!/usr/bin/env node
+process.env.COREPACK_ENABLE_DOWNLOAD_PROMPT??='1'
+require('./lib/corepack.cjs').runMain(['yarn', ...process.argv.slice(2)]);
 ```
 
 [nvm]: https://github.com/nvm-sh/nvm
